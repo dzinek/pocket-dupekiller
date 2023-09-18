@@ -1,4 +1,4 @@
-.PHONY: default clean lint build
+.PHONY: default clean lint build deps test testdeps
 
 BIN_NAME = "pocket-dupekiller"
 DIST_DIR = "dist"
@@ -16,3 +16,12 @@ clean:
 
 $(DIST_DIR):
 	mkdir -p $(DIST_DIR)
+
+deps:
+	go get ./...
+
+test: testdeps
+	go test ./...
+
+testdeps:
+	go get -t ./...
